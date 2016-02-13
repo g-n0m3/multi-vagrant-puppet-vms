@@ -16,7 +16,7 @@ else
     echo "" | sudo tee --append /etc/hosts 2> /dev/null && \
     echo "# Host config for Puppet Master and Agent Nodes" | sudo tee --append /etc/hosts 2> /dev/null && \
     echo "10.1.10.10   puppet.example.com  puppet" | sudo tee --append /etc/hosts 2> /dev/null && \
-    echo "10.1.10.20   dns1.example.com    dns1"   | sudo tee --append /etc/hosts 2> /dev/null && \
+    echo "10.1.10.20   lb1.example.com     lb1"    | sudo tee --append /etc/hosts 2> /dev/null && \
     echo "10.1.10.30   app1.example.com    app1"   | sudo tee --append /etc/hosts 2> /dev/null && \
     echo "10.1.10.40   db1.example.com     db1"    | sudo tee --append /etc/hosts 2> /dev/null 
  

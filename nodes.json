@@ -8,7 +8,7 @@
             ":nested": false,
             ":bootstrap": "bootstrap-master.sh"
         },
-        "dns1.example.com": {
+        "lb1.example.com": {
             ":ip": "10.1.10.20",
             "ports": [],
             ":cpus": 1,

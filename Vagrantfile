@@ -20,9 +20,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       ports = node_values['ports']
       ports.each do |port|
         config.vm.network :forwarded_port,
-          host:  port[':host'],
-          guest: port[':guest'],
-          id:    port[':id']
+                          host:  port[':host'],
+                          guest: port[':guest'],
+                          id:    port[':id']
       end
 
       config.vm.hostname = node_name
@@ -35,6 +35,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       end
 
       config.vm.provision :shell, :path => node_values[':bootstrap']
+
+      config.vm.provision "puppet" do |puppet|
+        puppet.manifests_path = "puppet/manifests"
+        puppet.manifest_file = "site.pp"
+        puppet.module_path = "puppet/modules"
+      end
+
     end
   end
 end
