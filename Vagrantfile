@@ -4,7 +4,7 @@
 # Author: Gary A. Stafford
 
 # read vm and chef configurations from JSON files
-nodes_config = (JSON.parse(File.read("nodes.json")))['nodes']
+nodes_config = (JSON.parse(File.read("provisioning/nodes.json")))['nodes']
 
 VAGRANTFILE_API_VERSION = "2"
 
@@ -28,9 +28,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       config.vm.hostname = node_name
       config.vm.network :private_network, ip: node_values[':ip']
 
-      config.vm.provider :virtualbox do |vb|
-        vb.customize ["modifyvm", :id, "--memory", node_values[':memory']]
-        vb.customize ["modifyvm", :id, "--name", node_name]
+      config.vm.provider :libvirt do |domain|
+        domain.cpus = node_values[':cpus']
+        domain.memory = node_values[':memory']
+        domain.nested = node_values[':nested']
       end
 
       config.vm.provision :shell, :path => node_values[':bootstrap']

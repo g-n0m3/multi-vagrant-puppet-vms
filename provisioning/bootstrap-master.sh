@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Run on VM to bootstrap Puppet Master server
 
@@ -15,10 +15,11 @@ else
     # Configure /etc/hosts file
     echo "" | sudo tee --append /etc/hosts 2> /dev/null && \
     echo "# Host config for Puppet Master and Agent Nodes" | sudo tee --append /etc/hosts 2> /dev/null && \
-    echo "192.168.32.5    puppet.example.com  puppet" | sudo tee --append /etc/hosts 2> /dev/null && \
-    echo "192.168.32.10   node01.example.com  node01" | sudo tee --append /etc/hosts 2> /dev/null && \
-    echo "192.168.32.20   node02.example.com  node02" | sudo tee --append /etc/hosts 2> /dev/null
-
+    echo "10.1.10.10   puppet.example.com  puppet" | sudo tee --append /etc/hosts 2> /dev/null && \
+    echo "10.1.10.20   dns1.example.com    dns1"   | sudo tee --append /etc/hosts 2> /dev/null && \
+    echo "10.1.10.30   app1.example.com    app1"   | sudo tee --append /etc/hosts 2> /dev/null && \
+    echo "10.1.10.40   db1.example.com     db1"    | sudo tee --append /etc/hosts 2> /dev/null 
+ 
     # Add optional alternate DNS names to /etc/puppet/puppet.conf
     sudo sed -i 's/.*\[main\].*/&\ndns_alt_names = puppet,puppet.example.com/' /etc/puppet/puppet.conf
 
@@ -26,7 +27,6 @@ else
     sudo puppet module install puppetlabs-ntp
     sudo puppet module install garethr-docker
     sudo puppet module install puppetlabs-git
-    sudo puppet module install puppetlabs-vcsrepo
     sudo puppet module install garystafford-fig
 
     # symlink manifest from Vagrant synced folder location

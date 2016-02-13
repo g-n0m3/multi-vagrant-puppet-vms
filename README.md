@@ -1,7 +1,6 @@
 ## Vagrant Multiple-VM Creation and Configuration
-Automatically provision multiple VMs with Vagrant and VirtualBox. Automatically install, configure, and test
-Puppet Master and Puppet Agents on those VMs. All instructions can be found in my blog post:
-[http://wp.me/p1RD28-1kX](http://wp.me/p1RD28-1kX)
+Automatically provision multiple VMs with Vagrant and libvirt. Automatically install, configure, and test
+Puppet Master and Puppet Agents on those VMs. 
 
 
 #### JSON Configuration File
@@ -23,18 +22,18 @@ sudo service puppetmaster start
 sudo puppet cert list --all # check for 'puppet' cert
 
 # Shift+Ctrl+T # new tab on host
-vagrant ssh node01.example.com # ssh into agent node
+vagrant ssh dns.example.com # ssh into agent node
 sudo service puppet status # test that agent was installed
 sudo puppet agent --test --waitforcert=60 # initiate certificate signing request (CSR)
 ```
 Back on the Puppet Master server (puppet.example.com)
 ```
-sudo puppet cert list # should see 'node01.example.com' cert waiting for signature
+sudo puppet cert list # should see 'dns1.example.com' cert waiting for signature
 sudo puppet cert sign --all # sign the agent node(s) cert(s)
 sudo puppet cert list --all # check for signed cert(s)
 ```
 #### Forwarding Ports
-Used by Vagrant and VirtualBox. To create additional forwarding ports, add them to the 'ports' array. For example:
+Used by Vagrant and libvirt. To create additional forwarding ports, add them to the 'ports' array. For example:
  ```
  "ports": [
         {
@@ -60,4 +59,4 @@ The use of the specific <machine> name is optional.
 * `facter`
 * `sudo tail -50 /var/log/syslog`
 * `sudo tail -50 /var/log/puppet/masterhttp.log`
-* `tail -50 ~/VirtualBox\ VMs/postblog/<machine>/Logs/VBox.log'
+
