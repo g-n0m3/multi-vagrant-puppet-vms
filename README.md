@@ -9,6 +9,12 @@ contained in the JSON file. You can add additional VMs to the JSON file, followi
 Vagrantfile will loop through all nodes (VMs) in the `nodes.json` file and create the VMs. You can easily swap
 configuration files for alternate environments since the Vagrantfile is designed to be generic and portable.
 
+#### Requirements
+sudo apt-get install vagrant
+vagrant plugin install vagrant-libvirt vagrant-mutate
+vagrant box add ubuntu/trusty64
+vagrant mutate ubuntu/trusty64 libvirt
+
 #### Instructions
 ```
 vagrant up # brings up all VMs
