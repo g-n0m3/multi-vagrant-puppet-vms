@@ -2,16 +2,22 @@
 
 # Builds Puppet Master and multiple Puppet Agent Nodes using JSON config file
 # Author: Gary A. Stafford
+# Contributor: Sod Oscarfono
 
-# read vm and chef configurations from JSON files
+# read vm configurations from JSON files
 nodes_config = (JSON.parse(File.read("provisioning/nodes.json")))['nodes']
 
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
   config.vm.box = "ubuntu/trusty64"
 
+  config.vm.synced_folder "provisioning", "/vagrant/provisioning", type:"rsync"
+
+
   nodes_config.each do |node|
+
     node_name   = node[0] # name of node
     node_values = node[1] # content of node
 

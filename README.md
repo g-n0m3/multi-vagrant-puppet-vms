@@ -29,7 +29,8 @@ sudo service puppetmaster start
 sudo puppet cert list --all # check for 'puppet' cert
 
 # Shift+Ctrl+T # new tab on host
-vagrant ssh dns.example.com # ssh into agent node
+vagrant ssh app1.example.com # ssh into agent node
+sh /vagrant/bootstrap-node.sh # run bootstrap script
 sudo service puppet status # test that agent was installed
 sudo puppet agent --test --waitforcert=60 # initiate certificate signing request (CSR)
 ```

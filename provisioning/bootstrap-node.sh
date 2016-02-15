@@ -28,15 +28,5 @@ else
     echo "10.1.10.30   app1.example.com    app1"   | sudo tee --append /etc/hosts 2> /dev/null && \
     echo "10.1.10.40   db1.example.com     db1"    | sudo tee --append /etc/hosts 2> /dev/null 
  
-    # Add agent section to /etc/puppet/puppet.conf
-    echo "" && echo "[agent]\nserver=puppet" | sudo tee --append /etc/puppet/puppet.conf 2> /dev/null
-
     sudo puppet agent --enable
-
-    # Install some initial puppet modules
-    sudo puppet module install puppetlabs-ntp
-    sudo puppet module install garethr-docker
-    sudo puppet module install puppetlabs-git
-    sudo puppet module install garystafford-fig
-
 fi
