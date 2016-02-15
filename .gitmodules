@@ -34,3 +34,6 @@
 [submodule "puppet/modules/puppetlabs-stdlib"]
 	path = puppet/modules/puppetlabs-stdlib
 	url = git://github.com/puppetlabs/puppetlabs-stdlib
+[submodule "puppet/modules/ngx_http_substitutions_filter_module"]
+	path = puppet/modules/ngx_http_substitutions_filter_module
+	url = git://github.com/yaoweibin/ngx_http_substitutions_filter_module.git

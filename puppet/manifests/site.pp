@@ -10,21 +10,21 @@ node default {
   include ntp, git
 }
 
-node '^lb[0-9]{1,3}.example.com' {
+node /^lb\d+\.example\.com$/ {
   # Test message
   notify { "Debug output on ${hostname} node.": }
 
   include ntp, git, nginx
 }
 
-node '^app[0-9]{1,3}.example.com' {
+node /^app\d+\.example\.com$/ {
   # Test message
   notify { "Debug output on ${hostname} node.": }
 
   include ntp, git, nginx
 }
 
-node '^db[0-9]{1,3}.example.com' {
+node /^db\d+\.example\.com$/ {
   # Test message
   notify { "Debug output on ${hostname} node.": }
 
